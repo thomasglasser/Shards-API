@@ -59,7 +59,7 @@ public abstract class BaseSherdDatagenSuite<T extends BaseSherdDatagenSuite<T>>
 	 * @param path The path of the pattern
 	 * @return The resource key of the pattern
 	 */
-	protected ResourceKey<String> patternKey(String path)
+	public ResourceKey<String> patternKey(String path)
 	{
 		return ResourceKey.create(Registries.DECORATED_POT_PATTERNS, new ResourceLocation(modId, path));
 	}
@@ -69,7 +69,7 @@ public abstract class BaseSherdDatagenSuite<T extends BaseSherdDatagenSuite<T>>
 	 * @param path The path of the resource
 	 * @return The location of the resource
 	 */
-	protected ResourceLocation modLoc(String path)
+	public ResourceLocation modLoc(String path)
 	{
 		return new ResourceLocation(modId, path);
 	}
@@ -184,6 +184,59 @@ public abstract class BaseSherdDatagenSuite<T extends BaseSherdDatagenSuite<T>>
 	public T makeSherdSuite(String key, List<ItemLike> items, String pattern)
 	{
 		return makeSherdSuite(key, Ingredient.of(items.toArray(new ItemLike[0])), pattern);
+	}
+
+	/**
+	 * Creates a sherd with the given key, item, and pattern and adds it to the suite
+	 * @param key The key of the sherd
+	 * @param item The item used to make the sherd
+	 * @param pattern The key of the pattern
+	 * @return The datagen suite with the sherd added
+	 */
+
+	public T makeSherdSuite(ResourceKey<Sherd> key, ItemLike item, ResourceKey<String> pattern)
+	{
+		return makeSherdSuite(key, Ingredient.of(item), pattern);
+	}
+
+	public T makeSherdSuite(ResourceLocation key, ItemLike item, ResourceKey<String> pattern)
+	{
+		return makeSherdSuite(key, Ingredient.of(item), pattern);
+	}
+
+	public T makeSherdSuite(String key, ItemLike item, ResourceKey<String> pattern)
+	{
+		return makeSherdSuite(key, Ingredient.of(item), pattern);
+	}
+
+	public T makeSherdSuite(ResourceKey<Sherd> key, ItemLike item, ResourceLocation pattern)
+	{
+		return makeSherdSuite(key, Ingredient.of(item), pattern);
+	}
+
+	public T makeSherdSuite(ResourceLocation key, ItemLike item, ResourceLocation pattern)
+	{
+		return makeSherdSuite(key, Ingredient.of(item), pattern);
+	}
+
+	public T makeSherdSuite(String key, ItemLike item, ResourceLocation pattern)
+	{
+		return makeSherdSuite(key, Ingredient.of(item), pattern);
+	}
+
+	public T makeSherdSuite(ResourceKey<Sherd> key, ItemLike item, String pattern)
+	{
+		return makeSherdSuite(key, Ingredient.of(item), pattern);
+	}
+
+	public T makeSherdSuite(ResourceLocation key, ItemLike item, String pattern)
+	{
+		return makeSherdSuite(key, Ingredient.of(item), pattern);
+	}
+
+	public T makeSherdSuite(String key, ItemLike item, String pattern)
+	{
+		return makeSherdSuite(key, Ingredient.of(item), pattern);
 	}
 
 	/**
@@ -303,5 +356,27 @@ public abstract class BaseSherdDatagenSuite<T extends BaseSherdDatagenSuite<T>>
 	public T makeSherdSuite(String key, TagKey<Item> tag)
 	{
 		return makeSherdSuite(key, Ingredient.of(tag));
+	}
+
+	/**
+	 * Creates a sherd with the same sherd and pattern key and given item and adds it to the suite
+	 * @param key The key of the sherd and pattern
+	 * @param item The item used to make the sherd
+	 * @return The datagen suite with the sherd added
+	 */
+
+	public T makeSherdSuite(ResourceKey<Sherd> key, ItemLike item)
+	{
+		return makeSherdSuite(key, item, key.location());
+	}
+
+	public T makeSherdSuite(ResourceLocation key, ItemLike item)
+	{
+		return makeSherdSuite(key, Ingredient.of(item));
+	}
+
+	public T makeSherdSuite(String key, ItemLike item)
+	{
+		return makeSherdSuite(key, Ingredient.of(item));
 	}
 }

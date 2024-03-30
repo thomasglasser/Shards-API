@@ -33,8 +33,8 @@ public class ExampleFabricDataGenerator implements DataGeneratorEntrypoint
 		FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
 
 		suite
-				.makeSherdSuite("api", List.of(Items.LIGHT))
-				.makeSherdSuite(SherdsApi.modLoc("hello"), ItemTags.MUSIC_DISCS, DecoratedPotPatterns.HEART)
+				.makeSherdSuite("api", Items.LIGHT)
+				.makeSherdSuite(suite.modLoc("hello"), ItemTags.MUSIC_DISCS, DecoratedPotPatterns.HEART)
 				.makeSherdSuite(SherdsApi.modLoc("replacement"), List.of(Items.SHEAF_POTTERY_SHERD, Items.SHELTER_POTTERY_SHERD), DecoratedPotPatterns.ARCHER)
 				.build(pack);
 	}
