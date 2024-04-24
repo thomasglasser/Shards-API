@@ -62,18 +62,6 @@ loom {
     }
 }
 
-// Add the generated resources to the main source set
-// Disabled for example purposes
-//sourceSets {
-//    main {
-//        resources {
-//            srcDirs += [
-//                    'src/main/generated'
-//            ]
-//        }
-//    }
-//}
-
 tasks.withType(ProcessResources).configureEach {
     from project(":common").sourceSets.main.resources
 }

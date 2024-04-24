@@ -45,9 +45,6 @@ runs {
     }
 }
 
-// Must be enabled for datagen resources to load, disabled for example purposes
-//sourceSets.main.resources { srcDir 'src/generated/resources' }
-
 jarJar.enable()
 def jarJarRangeAttribute = Attribute.of("jarJarRange", String.class);
 configurations {
