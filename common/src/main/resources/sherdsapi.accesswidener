@@ -1,26 +1,26 @@
-accessWidener   v1  named
-accessible field net/minecraft/world/level/block/entity/DecoratedPotPatterns BASE Lnet/minecraft/resources/ResourceKey;
-accessible field net/minecraft/world/level/block/entity/DecoratedPotPatterns BRICK Lnet/minecraft/resources/ResourceKey;
-accessible field net/minecraft/world/level/block/entity/DecoratedPotPatterns ARCHER Lnet/minecraft/resources/ResourceKey;
-accessible field net/minecraft/world/level/block/entity/DecoratedPotPatterns PRIZE Lnet/minecraft/resources/ResourceKey;
-accessible field net/minecraft/world/level/block/entity/DecoratedPotPatterns ARMS_UP Lnet/minecraft/resources/ResourceKey;
-accessible field net/minecraft/world/level/block/entity/DecoratedPotPatterns SKULL Lnet/minecraft/resources/ResourceKey;
-accessible field net/minecraft/world/level/block/entity/DecoratedPotPatterns BLADE Lnet/minecraft/resources/ResourceKey;
-accessible field net/minecraft/world/level/block/entity/DecoratedPotPatterns BREWER Lnet/minecraft/resources/ResourceKey;
-accessible field net/minecraft/world/level/block/entity/DecoratedPotPatterns BURN Lnet/minecraft/resources/ResourceKey;
-accessible field net/minecraft/world/level/block/entity/DecoratedPotPatterns DANGER Lnet/minecraft/resources/ResourceKey;
-accessible field net/minecraft/world/level/block/entity/DecoratedPotPatterns EXPLORER Lnet/minecraft/resources/ResourceKey;
-accessible field net/minecraft/world/level/block/entity/DecoratedPotPatterns FRIEND Lnet/minecraft/resources/ResourceKey;
-accessible field net/minecraft/world/level/block/entity/DecoratedPotPatterns HEART Lnet/minecraft/resources/ResourceKey;
-accessible field net/minecraft/world/level/block/entity/DecoratedPotPatterns HEARTBREAK Lnet/minecraft/resources/ResourceKey;
-accessible field net/minecraft/world/level/block/entity/DecoratedPotPatterns HOWL Lnet/minecraft/resources/ResourceKey;
-accessible field net/minecraft/world/level/block/entity/DecoratedPotPatterns MINER Lnet/minecraft/resources/ResourceKey;
-accessible field net/minecraft/world/level/block/entity/DecoratedPotPatterns MOURNER Lnet/minecraft/resources/ResourceKey;
-accessible field net/minecraft/world/level/block/entity/DecoratedPotPatterns PLENTY Lnet/minecraft/resources/ResourceKey;
-accessible field net/minecraft/world/level/block/entity/DecoratedPotPatterns SHEAF Lnet/minecraft/resources/ResourceKey;
-accessible field net/minecraft/world/level/block/entity/DecoratedPotPatterns SHELTER Lnet/minecraft/resources/ResourceKey;
-accessible field net/minecraft/world/level/block/entity/DecoratedPotPatterns SNORT Lnet/minecraft/resources/ResourceKey;
-accessible field net/minecraft/world/level/block/entity/DecoratedPotPatterns ANGLER Lnet/minecraft/resources/ResourceKey;
+accessWidener   v2  named
+transitive-accessible field net/minecraft/world/level/block/entity/DecoratedPotPatterns BASE Lnet/minecraft/resources/ResourceKey;
+transitive-accessible field net/minecraft/world/level/block/entity/DecoratedPotPatterns BRICK Lnet/minecraft/resources/ResourceKey;
+transitive-accessible field net/minecraft/world/level/block/entity/DecoratedPotPatterns ARCHER Lnet/minecraft/resources/ResourceKey;
+transitive-accessible field net/minecraft/world/level/block/entity/DecoratedPotPatterns PRIZE Lnet/minecraft/resources/ResourceKey;
+transitive-accessible field net/minecraft/world/level/block/entity/DecoratedPotPatterns ARMS_UP Lnet/minecraft/resources/ResourceKey;
+transitive-accessible field net/minecraft/world/level/block/entity/DecoratedPotPatterns SKULL Lnet/minecraft/resources/ResourceKey;
+transitive-accessible field net/minecraft/world/level/block/entity/DecoratedPotPatterns BLADE Lnet/minecraft/resources/ResourceKey;
+transitive-accessible field net/minecraft/world/level/block/entity/DecoratedPotPatterns BREWER Lnet/minecraft/resources/ResourceKey;
+transitive-accessible field net/minecraft/world/level/block/entity/DecoratedPotPatterns BURN Lnet/minecraft/resources/ResourceKey;
+transitive-accessible field net/minecraft/world/level/block/entity/DecoratedPotPatterns DANGER Lnet/minecraft/resources/ResourceKey;
+transitive-accessible field net/minecraft/world/level/block/entity/DecoratedPotPatterns EXPLORER Lnet/minecraft/resources/ResourceKey;
+transitive-accessible field net/minecraft/world/level/block/entity/DecoratedPotPatterns FRIEND Lnet/minecraft/resources/ResourceKey;
+transitive-accessible field net/minecraft/world/level/block/entity/DecoratedPotPatterns HEART Lnet/minecraft/resources/ResourceKey;
+transitive-accessible field net/minecraft/world/level/block/entity/DecoratedPotPatterns HEARTBREAK Lnet/minecraft/resources/ResourceKey;
+transitive-accessible field net/minecraft/world/level/block/entity/DecoratedPotPatterns HOWL Lnet/minecraft/resources/ResourceKey;
+transitive-accessible field net/minecraft/world/level/block/entity/DecoratedPotPatterns MINER Lnet/minecraft/resources/ResourceKey;
+transitive-accessible field net/minecraft/world/level/block/entity/DecoratedPotPatterns MOURNER Lnet/minecraft/resources/ResourceKey;
+transitive-accessible field net/minecraft/world/level/block/entity/DecoratedPotPatterns PLENTY Lnet/minecraft/resources/ResourceKey;
+transitive-accessible field net/minecraft/world/level/block/entity/DecoratedPotPatterns SHEAF Lnet/minecraft/resources/ResourceKey;
+transitive-accessible field net/minecraft/world/level/block/entity/DecoratedPotPatterns SHELTER Lnet/minecraft/resources/ResourceKey;
+transitive-accessible field net/minecraft/world/level/block/entity/DecoratedPotPatterns SNORT Lnet/minecraft/resources/ResourceKey;
+transitive-accessible field net/minecraft/world/level/block/entity/DecoratedPotPatterns ANGLER Lnet/minecraft/resources/ResourceKey;
 accessible class net/minecraft/data/tags/IntrinsicHolderTagsProvider$IntrinsicTagAppender
 accessible field net/minecraft/world/item/crafting/Ingredient values [Lnet/minecraft/world/item/crafting/Ingredient$Value;
 accessible class net/minecraft/world/item/crafting/Ingredient$TagValue
