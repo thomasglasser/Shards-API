@@ -46,32 +46,12 @@ runs {
 }
 
 jarJar.enable()
-def jarJarRangeAttribute = Attribute.of("jarJarRange", String.class);
-configurations {
-    include
-    jarJar {
-        dependencies.addAllLater(project.provider {
-            project.configurations.include.allDependencies.collect {
-                def newDep = it.copy()
-                if (newDep instanceof ModuleDependency) {
-                    newDep.attributes {
-                        it.attribute(jarJarRangeAttribute, "[$newDep.version,)" as String)
-                    }
-                    newDep.setTransitive(false)
-                } else {
-                    throw new RuntimeException("Attempted to 'include' non-module dependency")
-                }
-                newDep
-            }
-        })
-    }
-}
 
 dependencies {
     implementation "net.neoforged:neoforge:${neoforge_version}"
     compileOnly project(":common")
 
-    include implementation("dev.thomasglasser.tommylib:tommylib-neoforge-${minecraft_version}:${tommylib_version}")
+    jarJar implementation("dev.thomasglasser.tommylib:tommylib-neoforge-${minecraft_version}:${tommylib_version}")
 
     // Runtime
 //    runtimeOnly "maven.modrinth:jade:${jade_version}-neoforge"
