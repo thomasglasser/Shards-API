@@ -78,6 +78,10 @@ tasks.withType(ProcessResources).matching(notNeoTask).configureEach {
     from project(":common").sourceSets.main.resources
 }
 
+jar {
+    archiveClassifier = 'slim'
+}
+
 tasks.named('jarJar') {
     archiveClassifier = ''
 }
