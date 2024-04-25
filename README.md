@@ -15,7 +15,7 @@ The new pottery sherds are a nice feature, but they're a pain to add since they'
 
 [![Read the Documentation](https://rawcdn.githack.com/intergrav/devins-badges/1aec26abb75544baec37249f42008b2fcc0e731f/assets/cozy/documentation/ghpages_vector.svg)](https://github.com/thomasglasser/Sherds-API/wiki)
 [![Buy Me a Coffee](https://rawcdn.githack.com/intergrav/devins-badges/1aec26abb75544baec37249f42008b2fcc0e731f/assets/cozy/donate/buymeacoffee-singular_vector.svg)](https://buymeacoffee.com/thomasglasser)
-[![Discord](https://rawcdn.githack.com/intergrav/devins-badges/1aec26abb75544baec37249f42008b2fcc0e731f/assets/cozy/social/discord-singular_vector.svg)](https://discord.gg/tjf7CedM38)
+[![Discord](https://rawcdn.githack.com/intergrav/devins-badges/1aec26abb75544baec37249f42008b2fcc0e731f/assets/cozy/social/discord-singular_vector.svg)](https://discord.gg/U6Qf4P9YW4)
 ## Stats
 ### Github
 ![GitHub all releases downloads](https://img.shields.io/github/downloads/thomasglasser/Sherds-API/total?color=blue)
