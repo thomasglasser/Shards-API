@@ -80,7 +80,7 @@ jobs:
           changelog: ${{ env.changelog }}${{ inputs.last_version }}...${{ inputs.version }}
           github-tag: ${{ steps.mod_env.outputs.mod_version }}
           github-generate-changelog: true
-          java : Java 17
+          java : Java 21
           game-versions: |
             ${{ inputs.game_versions }}
 
@@ -97,7 +97,7 @@ jobs:
           name: ${{ inputs.title }}
           version: ${{ steps.mod_env.outputs.mod_version }}
           changelog: ${{ env.changelog }}${{ inputs.last_version }}...${{ inputs.version }}
-          java: Java 17
+          java: Java 21
           game-versions: |
             ${{ inputs.game_versions }}
 
@@ -115,7 +115,7 @@ jobs:
           name: ${{ inputs.title }}
           version: ${{ steps.mod_env.outputs.mod_version }}
           changelog: ${{ env.changelog }}${{ inputs.last_version }}...${{ inputs.version }}
-          java: Java 17
+          java: Java 21
           game-versions: |
             ${{ inputs.game_versions }}
 
