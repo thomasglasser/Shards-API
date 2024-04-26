@@ -11,7 +11,7 @@ subprojects {
         archivesName = "${mod_id}-${project.name}-${minecraft_version}"
     }
 
-    java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+    java.toolchain.languageVersion = JavaLanguageVersion.of(21)
     java.withSourcesJar()
     java.withJavadocJar()
 
@@ -94,8 +94,6 @@ subprojects {
     processResources {
         var replaceProperties = [
                 mod_name: mod_name,
-                resource_pack_format_number: resource_pack_format_number,
-                data_pack_format_number: data_pack_format_number,
                 mod_id: mod_id,
                 major_fml_version: major_fml_version,
                 version: project.version,
@@ -114,7 +112,7 @@ subprojects {
         ]
         inputs.properties replaceProperties
 
-        filesMatching(['META-INF/mods.toml','fabric.mod.json','**/pack.mcmeta','*.mixins.json']) {
+        filesMatching(['META-INF/neoforge.mods.toml','fabric.mod.json','**/pack.mcmeta','*.mixins.json']) {
             expand replaceProperties + [project: project]
         }
     }
@@ -122,11 +120,6 @@ subprojects {
     // Add the generated resources to the main source set
     // Disabled for example purposes
 //    sourceSets.main.resources { srcDir 'src/generated/resources' }
-
-    tasks.withType(JavaCompile).configureEach {
-        it.options.encoding = 'UTF-8'
-        it.options.release = 17
-    }
 
     publishing {
         publications {

@@ -18,7 +18,8 @@ dependencies {
 
     mappings loom.layered() {
         officialMojangMappings()
-        parchment("org.parchmentmc.data:parchment-${minecraft_version}:${parchment_version}@zip")
+        parchment("org.parchmentmc.data:parchment-${previous_minecraft_version}:${parchment_version}@zip")
+//        parchment("org.parchmentmc.data:parchment-${minecraft_version}:${parchment_version}@zip")
     }
 
     compileOnly group:'net.fabricmc', name:'sponge-mixin', version:mixin_version

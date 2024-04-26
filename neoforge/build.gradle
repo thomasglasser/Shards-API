@@ -9,7 +9,8 @@ subsystems {
         // The Minecraft version for which the Parchment mappings were created.
         // This does not necessarily need to match the Minecraft version your mod targets
         // Defaults to the value of Gradle property neogradle.subsystems.parchment.minecraftVersion
-        minecraftVersion = minecraft_version
+        minecraftVersion = previous_minecraft_version
+//        minecraftVersion = minecraft_version
 
         // The version of Parchment mappings to apply.
         // See https://parchmentmc.org/docs/getting-started for a list.
@@ -54,9 +55,9 @@ dependencies {
     jarJar implementation("dev.thomasglasser.tommylib:tommylib-neoforge-${minecraft_version}:${tommylib_version}")
 
     // Runtime
-//    runtimeOnly "maven.modrinth:jade:${jade_version}-neoforge"
-//    runtimeOnly "me.shedaniel:RoughlyEnoughItems-neoforge:$rei_version"
-//    runtimeOnly "me.shedaniel.cloth:cloth-config-neoforge:$cloth_config_version"
+    runtimeOnly "maven.modrinth:jade:${jade_version}+neoforge"
+    runtimeOnly "me.shedaniel:RoughlyEnoughItems-neoforge:$rei_version"
+    runtimeOnly "me.shedaniel.cloth:cloth-config-neoforge:$cloth_config_version"
 }
 
 // NeoGradle compiles the game, but we don't want to add our common code to the game's code
