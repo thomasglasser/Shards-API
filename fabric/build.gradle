@@ -14,7 +14,7 @@ dependencies {
 
     modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
-    implementation group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.1'
+    implementation group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.2'
     compileOnly project(":common")
 
     include modImplementation("dev.thomasglasser.tommylib:tommylib-fabric-${minecraft_version}:${tommylib_version}")
