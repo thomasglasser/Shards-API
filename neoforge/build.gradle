@@ -46,6 +46,14 @@ runs {
     }
 }
 
+// Sets up a dependency configuration called 'localRuntime'.
+// This configuration should be used instead of 'runtimeOnly' to declare
+// a dependency that will be present for runtime testing but that is
+// "optional", meaning it will not be pulled by dependents of this mod.
+configurations {
+    runtimeClasspath.extendsFrom localRuntime
+}
+
 jarJar.enable()
 
 dependencies {
@@ -55,9 +63,9 @@ dependencies {
     jarJar implementation("dev.thomasglasser.tommylib:tommylib-neoforge-${minecraft_version}:${tommylib_version}")
 
     // Runtime
-    runtimeOnly "maven.modrinth:jade:${jade_version}+neoforge"
-    runtimeOnly "me.shedaniel:RoughlyEnoughItems-neoforge:$rei_version"
-    runtimeOnly "me.shedaniel.cloth:cloth-config-neoforge:$cloth_config_version"
+    localRuntime  "maven.modrinth:jade:${jade_version}+neoforge"
+    localRuntime  "me.shedaniel:RoughlyEnoughItems-neoforge:$rei_version"
+    localRuntime  "me.shedaniel.cloth:cloth-config-neoforge:$cloth_config_version"
 }
 
 // NeoGradle compiles the game, but we don't want to add our common code to the game's code
