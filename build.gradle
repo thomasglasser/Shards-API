@@ -78,6 +78,13 @@ subprojects {
                 includeGroupAndSubgroups 'maven.modrinth'
             }
         }
+        maven {
+            name = 'JEI'
+            url = 'https://maven.blamejared.com/'
+            content {
+                includeGroupAndSubgroups 'mezz.jei'
+            }
+        }
 
         // Non-specific
         maven {
