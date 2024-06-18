@@ -11,6 +11,9 @@ subprojects {
         archivesName = "${mod_id}-${project.name}-${minecraft_version}"
     }
 
+    // Includes datagenned resources at runtime, disabled for example purposes
+//    sourceSets.main.resources.srcDir './src/generated/resources'
+
     java.toolchain.languageVersion = JavaLanguageVersion.of(21)
     java.withSourcesJar()
     java.withJavadocJar()
@@ -83,6 +86,13 @@ subprojects {
             url = 'https://maven.blamejared.com/'
             content {
                 includeGroupAndSubgroups 'mezz.jei'
+            }
+        }
+        maven {
+            name = "TommyLib"
+            url = "https://dl.cloudsmith.io/public/thomasglasser/tommylib/maven/"
+            content {
+                includeGroupAndSubgroups 'dev.thomasglasser.tommylib'
             }
         }
 
@@ -168,12 +178,12 @@ subprojects {
 
         repositories {
             maven {
+                name = "Cloudsmith"
+                url 'https://maven.cloudsmith.io/thomasglasser/sherdsapi/'
                 credentials {
-                    username = project.findProperty("MAVEN_USER") ?: System.getenv("MAVEN_USER")
-                    password = project.findProperty("MAVEN_PASSWORD") ?: System.getenv("MAVEN_PASSWORD")
+                    username = project.findProperty("CLOUDSMITH_USERNAME") ?: System.getenv("CLOUDSMITH_USERNAME")
+                    password = project.findProperty("CLOUDSMITH_API_KEY") ?: System.getenv("CLOUDSMITH_API_KEY")
                 }
-
-                url = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
             }
         }
     }

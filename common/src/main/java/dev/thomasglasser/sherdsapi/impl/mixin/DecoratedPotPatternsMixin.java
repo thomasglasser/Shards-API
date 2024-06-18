@@ -21,7 +21,7 @@ public class DecoratedPotPatternsMixin
 	{
 		Level level = ClientUtils.getLevel();
 
-		if (original == null && level != null)
+		if (level != null)
 		{
 			Registry<Sherd> registry = level.registryAccess().registry(SherdsApiRegistries.SHERD).orElseThrow();
 			for (Sherd sherd : registry.stream().toList())

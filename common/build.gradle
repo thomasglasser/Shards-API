@@ -35,9 +35,6 @@ tasks.withType(AbstractRemapJarTask).each {
     it.targetNamespace = "named"
 }
 
-// Includes datagenned resources at runtime, disabled for example purposes
-//sourceSets.main.resources.srcDir './src/generated/resources'
-
 /*
 Generates a new common artifact in intermediary mappings.
 */
