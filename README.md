@@ -7,7 +7,6 @@ The new pottery sherds are a nice feature, but they're a pain to add since they'
 [![Available on Github](https://rawcdn.githack.com/intergrav/devins-badges/1aec26abb75544baec37249f42008b2fcc0e731f/assets/cozy/available/github_vector.svg)](https://github.com/thomasglasser/Sherds-API)
 [![Available on Modrinth](https://rawcdn.githack.com/intergrav/devins-badges/1aec26abb75544baec37249f42008b2fcc0e731f/assets/cozy/available/modrinth_vector.svg)](https://modrinth.com/mod/sherdsapi)
 [![Available on Curseforge](https://rawcdn.githack.com/intergrav/devins-badges/1aec26abb75544baec37249f42008b2fcc0e731f/assets/cozy/available/curseforge_vector.svg)](https://www.curseforge.com/minecraft/mc-mods/sherdsapi)
-[![Available on Maven Central](https://rawcdn.githack.com/intergrav/devins-badges/2dc967fc44dc73850eee42c133a55c8ffc5e30cb/assets/cozy/available/maven-central_vector.svg)](https://central.sonatype.com/namespace/dev.thomasglasser.sherdsapi)
 
 [![Supported on NeoForge](https://rawcdn.githack.com/thomasglasser/thomasglasser/1f85027a20670b89b94462ddd345af897b47ac17/files/badges/cozy/supported/neoforge_vector.svg)](https://modrinth.com/mod/sherdsapi/versions?l=neoforge)
 [![Supported on Fabric](https://rawcdn.githack.com/intergrav/devins-badges/1aec26abb75544baec37249f42008b2fcc0e731f/assets/cozy/supported/fabric_vector.svg)](https://modrinth.com/mod/sherdsapi/versions?l=fabric)
@@ -16,6 +15,14 @@ The new pottery sherds are a nice feature, but they're a pain to add since they'
 [![Read the Documentation](https://rawcdn.githack.com/intergrav/devins-badges/1aec26abb75544baec37249f42008b2fcc0e731f/assets/cozy/documentation/ghpages_vector.svg)](https://github.com/thomasglasser/Sherds-API/wiki)
 [![Buy Me a Coffee](https://rawcdn.githack.com/intergrav/devins-badges/1aec26abb75544baec37249f42008b2fcc0e731f/assets/cozy/donate/buymeacoffee-singular_vector.svg)](https://buymeacoffee.com/thomasglasser)
 [![Discord](https://rawcdn.githack.com/intergrav/devins-badges/1aec26abb75544baec37249f42008b2fcc0e731f/assets/cozy/social/discord-singular_vector.svg)](https://discord.gg/tjf7CedM38)
+
+[![Hosted By: Cloudsmith](https://img.shields.io/badge/OSS%20hosting%20by-cloudsmith-blue?logo=cloudsmith&style=for-the-badge)](https://cloudsmith.com)
+
+Package repository hosting is graciously provided by  [Cloudsmith](https://cloudsmith.com).
+Cloudsmith is the only fully hosted, cloud-native, universal package management solution, that
+enables your organization to create, store, and share packages in any format, to any place, with total
+confidence.
+
 ## Stats
 ### Github
 ![GitHub all releases downloads](https://img.shields.io/github/downloads/thomasglasser/Sherds-API/total?color=blue)
