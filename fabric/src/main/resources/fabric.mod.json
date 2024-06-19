@@ -2,7 +2,6 @@
   "schemaVersion": 1,
   "id": "${mod_id}",
   "version": "${version}",
-
   "name": "${mod_name}",
   "description": "${description}",
   "authors": [
@@ -16,29 +15,29 @@
     "sources": "https://github.com/thomasglasser/${github_name}",
     "issues": "https://github.com/thomasglasser/${github_name}/issues"
   },
-
   "license": "${license}",
   "icon": "${icon}",
   "environment": "*",
-    "entrypoints": {
-      "main": [
-        "dev.thomasglasser.sherdsapi.SherdsApiFabric"
-      ],
-      "fabric-datagen": [
-        "dev.thomasglasser.sherdsapi.example.ExampleFabricDataGenerator"
-      ]
-    },
-    "mixins": [
-      "${mod_id}.mixins.json"
+  "entrypoints": {
+    "main": [
+      "dev.thomasglasser.sherdsapi.SherdsApiFabric"
     ],
-
+    "client": [
+    ],
+    "fabric-datagen": [
+      "dev.thomasglasser.sherdsapi.example.ExampleFabricDataGenerator"
+    ]
+  },
+  "mixins": [
+    "${mod_id}.mixins.json",
+    "${mod_id}.fabric.mixins.json"
+  ],
   "accessWidener" : "${mod_id}.accesswidener",
-
   "depends": {
     "fabricloader": ">=${fabric_loader_version}",
     "fabric-api": ">=${fabric_version}",
     "minecraft": ">=${minecraft_version}",
-    "java": ">=17",
+    "java": ">=${java_version}",
     "tommylib": ">=${tommylib_version}"
   },
   "custom": {

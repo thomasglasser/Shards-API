@@ -1,92 +1,61 @@
 plugins {
-    id 'idea'
-    id 'net.neoforged.gradle.userdev' version '7.0.145'
-    id 'java-library'
+    id 'sherdsapi-loader'
+    id 'net.neoforged.moddev' version "${mdg_version}"
 }
 
-subsystems {
+neoForge {
+    version = "${neoforge_version}"
+
     parchment {
         minecraftVersion = parchment_minecraft_version
         mappingsVersion = parchment_version
     }
+
+    def at = '../common/src/main/resources/META-INF/accesstransformer.cfg'
+    if (file(at).exists()) {
+        accessTransformers = [at]
+    }
+
+    runs {
+        client {
+            client()
+            ideName = "NeoForge Client"
+            gameDirectory = project.layout.projectDirectory.dir('runs/client')
+        }
+        client_alt {
+            client()
+            ideName = "NeoForge Client 2"
+            gameDirectory = project.layout.projectDirectory.dir('runs/client_alt')
+            programArguments = ["--username", "DevAlt"]
+        }
+        server {
+            server()
+            ideName = "NeoForge Server"
+            gameDirectory = project.layout.projectDirectory.dir('runs/server')
+        }
+        data {
+            data()
+            ideName = "NeoForge Data Generation"
+            gameDirectory = project.layout.projectDirectory.dir('runs/data')
+            programArguments.addAll '--mod', project.mod_id, '--all', '--output', file('../common/src/generated/resources/').getAbsolutePath(), '--existing', file('../common/src/main/resources/').getAbsolutePath()
+        }
+    }
+
+    mods {
+        sherdsapi {
+            sourceSet sourceSets.main
+        }
+    }
 }
 
-if (file('src/main/resources/META-INF/accesstransformer.cfg').exists()) {
-    minecraft.accessTransformers.file file('src/main/resources/META-INF/accesstransformer.cfg')
-}
-runs {
-    configureEach {
-        modSource project.sourceSets.main
-    }
-    client {
-        systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
-    }
-    server {
-        systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
-        programArgument '--nogui'
-    }
-
-    gameTestServer {
-        systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
-    }
-
-    data {
-        programArguments.addAll '--mod', project.mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
-    }
-}
-
-// Sets up a dependency configuration called 'localRuntime'.
-// This configuration should be used instead of 'runtimeOnly' to declare
-// a dependency that will be present for runtime testing but that is
-// "optional", meaning it will not be pulled by dependents of this mod.
 configurations {
     runtimeClasspath.extendsFrom localRuntime
 }
 
-jarJar.enable()
-
 dependencies {
-    implementation "net.neoforged:neoforge:${neoforge_version}"
-    compileOnly project(":common")
-
     jarJar implementation("dev.thomasglasser.tommylib:tommylib-neoforge-${minecraft_version}:${tommylib_version}")
 
     // Runtime
     localRuntime "maven.modrinth:jade:${jade_version}+neoforge"
     localRuntime "mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}"
-    localRuntime "me.shedaniel.cloth:cloth-config-neoforge:$cloth_config_version"
-}
-
-// NeoGradle compiles the game, but we don't want to add our common code to the game's code
-Spec<Task> notNeoTask = { Task it -> !it.name.startsWith("neo") } as Spec<Task>
-
-tasks.withType(JavaCompile).matching(notNeoTask).configureEach {
-    source(project(":common").sourceSets.main.allSource)
-}
-
-tasks.withType(Javadoc).matching(notNeoTask).configureEach {
-    source(project(":common").sourceSets.main.allJava)
-}
-
-tasks.named("sourcesJar", Jar) {
-    from(project(":common").sourceSets.main.allSource)
-}
-
-tasks.withType(ProcessResources).matching(notNeoTask).configureEach {
-    from project(":common").sourceSets.main.resources
-}
-
-jar {
-    archiveClassifier = 'slim'
-}
-
-tasks.named('jarJar') {
-    archiveClassifier = ''
-}
-
-configurations.runtimeElements.artifacts.clear()
-artifacts {
-    runtimeElements(tasks.jarJar) {
-        builtBy tasks.jarJar
-    }
 }

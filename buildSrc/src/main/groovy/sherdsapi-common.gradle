@@ -1,0 +1,220 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+    id 'signing'
+}
+
+base {
+    archivesName = "${mod_id}-${project.name}-${minecraft_version}"
+}
+
+java {
+    toolchain.languageVersion = JavaLanguageVersion.of(java_version)
+    withSourcesJar()
+    withJavadocJar()
+}
+
+repositories {
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = 'Parchment'
+                url = 'https://maven.parchmentmc.org'
+            }
+        }
+        filter { includeGroupAndSubgroups("org.parchmentmc") }
+    }
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = 'Fabric'
+                url = 'https://maven.fabricmc.net/'
+            }
+        }
+        filter { includeGroupAndSubgroups("net.fabricmc") }
+    }
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = 'Cloth Config'
+                url = 'https://maven.shedaniel.me/'
+            }
+        }
+        filter {
+            includeGroupAndSubgroups "me.shedaniel"
+            includeGroupAndSubgroups "dev.architectury"
+        }
+    }
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = 'Mod Menu'
+                url = 'https://maven.terraformersmc.com/releases'
+            }
+        }
+        filter {
+            includeGroupAndSubgroups "me.shedaniel"
+            includeGroupAndSubgroups "dev.architectury"
+            includeGroupAndSubgroups "com.terraformersmc"
+        }
+    }
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = 'Modrinth'
+                url = 'https://api.modrinth.com/maven'
+            }
+        }
+        filter { includeGroupAndSubgroups "maven.modrinth" }
+    }
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = 'JEI'
+                url = 'https://maven.blamejared.com/'
+            }
+        }
+        filter { includeGroupAndSubgroups "mezz.jei" }
+    }
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = 'Sponge'
+                url = 'https://repo.spongepowered.org/repository/maven-public'
+            }
+        }
+        filter { includeGroupAndSubgroups("org.spongepowered") }
+    }
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = 'TommyLib'
+                url = 'https://dl.cloudsmith.io/public/thomasglasser/tommylib/maven/'
+            }
+        }
+        filter { includeGroupAndSubgroups("dev.thomasglasser.tommylib") }
+    }
+    maven {
+        name = 'NeoForge'
+        url = 'https://maven.neoforged.net/releases'
+    }
+    maven {
+        name = 'Mojang Meta'
+        url = 'https://maven.neoforged.net/mojang-meta'
+    }
+    mavenCentral()
+    mavenLocal()
+}
+
+// Declare capabilities on the outgoing configurations.
+// Read more about capabilities here: https://docs.gradle.org/current/userguide/component_capabilities.html#sec:declaring-additional-capabilities-for-a-local-component
+['apiElements', 'runtimeElements', 'sourcesElements', 'javadocElements'].each { variant ->
+    configurations."$variant".outgoing {
+        capability("$group:${base.archivesName.get()}:$version")
+        capability("$group:$mod_id-${project.name}-${minecraft_version}:$version")
+        capability("$group:$mod_id:$version")
+    }
+    publishing.publications.configureEach {
+        suppressPomMetadataWarningsFor(variant)
+    }
+}
+
+jar {
+    manifest {
+        attributes([
+                'Specification-Title'   : mod_name,
+                'Specification-Vendor'  : mod_author,
+                'Specification-Version' : project.jar.archiveVersion,
+                'Implementation-Title'  : project.name,
+                'Implementation-Version': project.jar.archiveVersion,
+                'Implementation-Vendor' : mod_author,
+                'Built-On-Minecraft'    : minecraft_version
+        ])
+    }
+}
+
+processResources {
+    def expandProps = [
+            "version": version,
+            "group": project.group,
+            "minecraft_version": minecraft_version,
+            "next_minecraft_version": next_minecraft_version,
+            "fabric_version": fabric_version,
+            "fabric_loader_version": fabric_loader_version,
+            "mod_name": mod_name,
+            "mod_author": mod_author,
+            "mod_id": mod_id,
+            "license": license,
+            "description": project.description,
+            "neoforge_version": neoforge_version,
+            "major_fml_version": major_fml_version,
+            "contributors": contributors,
+            "java_version": java_version,
+            "icon": icon,
+            "github_name": github_name,
+            "tommylib_version": tommylib_version
+    ]
+
+    filesMatching(['fabric.mod.json', 'META-INF/neoforge.mods.toml', '*.mixins.json']) {
+        expand expandProps
+    }
+    inputs.properties(expandProps)
+}
+
+publishing {
+    publications {
+        register('mavenJava', MavenPublication) {
+            artifactId base.archivesName.get()
+            from components.java
+        }
+
+        maven(MavenPublication) {
+            pom {
+                name = project.mod_name
+                description = project.description
+                url = "https://github.com/thomasglasser/${github_name}/wiki"
+                licenses {
+                    license {
+                        name = project.license
+                        url = project.license_url
+                    }
+                }
+                developers {
+                    developer {
+                        id = project.mod_author
+                        name = project.mod_author
+                    }
+                }
+                issueManagement {
+                    system = 'GitHub'
+                    url = "https://github.com/thomasglasser/${github_name}/issues"
+                }
+                scm {
+                    connection = "scm:git:git://github.com/thomasglasser/${github_name}.git"
+                    developerConnection = "scm:git:ssh://github.com:thomasglasser/${github_name}.git"
+                    url = "https://github.com/thomasglasser/${github_name}/tree/${minecraft_version}"
+                }
+            }
+        }
+    }
+
+    repositories {
+        maven {
+            name = "Cloudsmith"
+            url "https://maven.cloudsmith.io/thomasglasser/${mod_id}/"
+            credentials {
+                username = project.findProperty("CLOUDSMITH_USERNAME") ?: System.getenv("CLOUDSMITH_USERNAME")
+                password = project.findProperty("CLOUDSMITH_API_KEY") ?: System.getenv("CLOUDSMITH_API_KEY")
+            }
+        }
+
+        maven {
+            url System.getenv("local_maven_url")
+        }
+    }
+}
+
+signing {
+    useGpgCmd()
+    sign publishing.publications
+}

@@ -19,6 +19,6 @@ public class SherdsApi {
 
     public static ResourceLocation modLoc(String s)
     {
-        return new ResourceLocation(MOD_ID, s);
+        return ResourceLocation.fromNamespaceAndPath(MOD_ID, s);
     }
 }

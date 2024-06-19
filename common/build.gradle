@@ -1,57 +1,50 @@
-import net.fabricmc.loom.task.RemapJarTask
-
 plugins {
-    id 'idea'
-    id 'java'
-    id 'fabric-loom' version "${loom_version}"
+    id 'sherdsapi-common'
+    id 'net.neoforged.moddev' version "${mdg_version}"
 }
 
-loom {
-    if (project(":common").file("src/main/resources/${mod_id}.accesswidener").exists()) {
-        accessWidenerPath.set(project(":common").file("src/main/resources/${mod_id}.accesswidener"))
+
+neoForge {
+    neoFormVersion = "${minecraft_version}-20240613.152323"
+
+    parchment {
+        minecraftVersion = parchment_minecraft_version
+        mappingsVersion = parchment_version
+    }
+
+    // Required for common ATs to work. This line can be removed when ModDevGradle updates NFRT
+    neoFormRuntime {
+        version = '0.1.53'
+    }
+
+    def at = 'src/main/resources/META-INF/accesstransformer.cfg'
+    if (file(at).exists()) {
+        accessTransformers = [at]
     }
 }
 
 dependencies {
-
-    minecraft "com.mojang:minecraft:${minecraft_version}"
-
-    mappings loom.layered() {
-        officialMojangMappings()
-        parchment("org.parchmentmc.data:parchment-${parchment_minecraft_version}:${parchment_version}@zip")
-    }
-
     compileOnly group:'net.fabricmc', name:'sponge-mixin', version:mixin_version
     implementation "io.github.llamalad7:mixinextras-common:${mixinextras_version}"
     implementation group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.2'
 
-    modImplementation("dev.thomasglasser.tommylib:tommylib-common-${minecraft_version}:${tommylib_version}") {
-        transitive = false
+    implementation "dev.thomasglasser.tommylib:tommylib-common-${minecraft_version}:${tommylib_version}"
+}
+
+configurations {
+    commonJava {
+        canBeResolved = false
+        canBeConsumed = true
+    }
+    commonResources {
+        canBeResolved = false
+        canBeConsumed = true
     }
 }
 
-import net.fabricmc.loom.task.AbstractRemapJarTask
-tasks.withType(AbstractRemapJarTask).each {
-    it.targetNamespace = "named"
+artifacts {
+    commonJava sourceSets.main.java.sourceDirectories.singleFile
+    sourceSets.main.resources.sourceDirectories.files.each {
+        commonResources it
+    }
 }
-
-/*
-Generates a new common artifact in intermediary mappings.
-*/
-
-remapJar {
-    targetNamespace.set("named")
-    dependsOn("remapCommonJar")
-}
-
-tasks.register("remapCommonJar", RemapJarTask,  task -> {
-    final AbstractArchiveTask jarTask = getTasks().named(JavaPlugin.JAR_TASK_NAME, AbstractArchiveTask.class).get();
-    task.dependsOn(jarTask);
-    task.setDescription("Remaps the built project jar to intermediary mappings.");
-
-    task.getInputFile().convention(jarTask.getArchiveFile());
-    task.dependsOn(getTasks().named(JavaPlugin.JAR_TASK_NAME));
-    task.archiveFileName.set(archiveFileName.get().replace(".jar", "-intermediary.jar"))
-    task.targetNamespace.set("intermediary")
-    task.setGroup("fabric")
-})

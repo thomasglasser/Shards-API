@@ -1,15 +1,11 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "dev.thomasglasser.sherdsapi.impl.mixin",
-  "refmap": "${mod_id}.refmap.json",
+  "package": "dev.thomasglasser.sherdsapi.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "accessor.ItemsToPotsAccessor"
   ],
   "client": [
-    "SheetsMixin",
-    "DecoratedPotPatternsMixin"
   ],
   "server": [
   ],
