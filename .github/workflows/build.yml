@@ -22,3 +22,13 @@ jobs:
         uses: gradle/actions/setup-gradle@v3
         with:
           arguments: build
+
+      - name: Upload Jars
+        uses: actions/upload-artifact@v3.1.2
+        with:
+          name: Sherds API
+          if-no-files-found: error
+          path: |
+            fabric/build/libs
+            neoforge/build/libs
+            common/build/libs

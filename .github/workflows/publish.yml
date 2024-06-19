@@ -92,8 +92,8 @@ jobs:
         if : (matrix.website == 'modrinth' && matrix.loader != 'common')
         with:
           files: |
-            ${{ matrix.loader }}/build/libs/!(*-@(dev|sources|javadoc|slim)).jar
-            ${{ matrix.loader }}/build/libs/*-@(dev|sources|javadocs).jar
+            ${{ matrix.loader }}/build/libs/!(*-@(dev|sources|javadoc)).jar
+            ${{ matrix.loader }}/build/libs/*-@(dev|sources|javadoc).jar
           name: ${{ inputs.title }}
           version: ${{ steps.mod_env.outputs.mod_version }}
           changelog: ${{ env.changelog }}${{ inputs.last_version }}...${{ inputs.version }}
