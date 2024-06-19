@@ -201,15 +201,11 @@ publishing {
     repositories {
         maven {
             name = "Cloudsmith"
-            url "https://maven.cloudsmith.io/thomasglasser/${mod_id}/"
+            url = "https://maven.cloudsmith.io/thomasglasser/${mod_id}/"
             credentials {
                 username = project.findProperty("CLOUDSMITH_USERNAME") ?: System.getenv("CLOUDSMITH_USERNAME")
                 password = project.findProperty("CLOUDSMITH_API_KEY") ?: System.getenv("CLOUDSMITH_API_KEY")
             }
-        }
-
-        maven {
-            url System.getenv("local_maven_url")
         }
     }
 }
