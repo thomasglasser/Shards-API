@@ -9,6 +9,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.DecoratedPotPattern;
 import net.minecraft.world.level.block.entity.DecoratedPotPatterns;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -16,8 +17,8 @@ import org.spongepowered.asm.mixin.injection.At;
 @Mixin(DecoratedPotPatterns.class)
 public class DecoratedPotPatternsMixin
 {
-	@ModifyReturnValue(method = "getResourceKey", at = @At("RETURN"))
-	private static ResourceKey<String> getResourceKey(ResourceKey<String> original, Item item)
+	@ModifyReturnValue(method = "getPatternFromItem", at = @At("RETURN"))
+	private static ResourceKey<DecoratedPotPattern> getResourceKey(ResourceKey<DecoratedPotPattern> original, Item item)
 	{
 		Level level = ClientUtils.getLevel();
 
@@ -34,7 +35,7 @@ public class DecoratedPotPatternsMixin
 					}
 					else
 					{
-						return ResourceKey.create(Registries.DECORATED_POT_PATTERNS, registry.getResourceKey(sherd).orElseThrow().location());
+						return ResourceKey.create(Registries.DECORATED_POT_PATTERN, registry.getResourceKey(sherd).orElseThrow().location());
 					}
 				}
 			}

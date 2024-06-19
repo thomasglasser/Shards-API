@@ -2,7 +2,7 @@
   "values": [
     "minecraft:light",
     {
-      "id": "#minecraft:music_discs",
+      "id": "#c:music_discs",
       "required": false
     },
     "minecraft:sheaf_pottery_sherd",

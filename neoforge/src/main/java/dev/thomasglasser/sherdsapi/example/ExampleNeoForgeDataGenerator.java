@@ -3,7 +3,7 @@ package dev.thomasglasser.sherdsapi.example;
 import dev.thomasglasser.sherdsapi.SherdsApi;
 import dev.thomasglasser.sherdsapi.api.data.NeoForgeSherdDatagenSuite;
 import dev.thomasglasser.sherdsapi.impl.SherdsApiSherds;
-import net.minecraft.tags.ItemTags;
+import dev.thomasglasser.tommylib.api.tags.ConventionalItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.entity.DecoratedPotPatterns;
 import net.neoforged.bus.api.IEventBus;
@@ -19,7 +19,7 @@ public class ExampleNeoForgeDataGenerator
 	public static void gatherData(GatherDataEvent event)
 	{
 		new NeoForgeSherdDatagenSuite(event, SherdsApi.MOD_ID)
-				.makeSherdSuite(SherdsApiSherds.LIGHTBULB, ItemTags.MUSIC_DISCS, DecoratedPotPatterns.ARCHER)
+				.makeSherdSuite(SherdsApiSherds.LIGHTBULB, ConventionalItemTags.MUSIC_DISCS, DecoratedPotPatterns.ARCHER)
 				.makeSherdSuite(SherdsApiSherds.API, List.of(Items.STRUCTURE_BLOCK, Items.STRUCTURE_VOID));
 	}
 

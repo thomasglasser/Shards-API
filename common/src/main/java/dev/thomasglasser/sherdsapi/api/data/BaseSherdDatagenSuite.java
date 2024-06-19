@@ -10,6 +10,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.entity.DecoratedPotPattern;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +52,7 @@ public abstract class BaseSherdDatagenSuite<T extends BaseSherdDatagenSuite<T>>
 	 */
 	protected ResourceKey<Sherd> sherdKey(String path)
 	{
-		return SherdsApiRegistries.sherdKey(new ResourceLocation(modId, path));
+		return SherdsApiRegistries.sherdKey(ResourceLocation.fromNamespaceAndPath(modId, path));
 	}
 
 	/**
@@ -59,9 +60,9 @@ public abstract class BaseSherdDatagenSuite<T extends BaseSherdDatagenSuite<T>>
 	 * @param path The path of the pattern
 	 * @return The resource key of the pattern
 	 */
-	public ResourceKey<String> patternKey(String path)
+	public ResourceKey<DecoratedPotPattern> patternKey(String path)
 	{
-		return ResourceKey.create(Registries.DECORATED_POT_PATTERNS, new ResourceLocation(modId, path));
+		return ResourceKey.create(Registries.DECORATED_POT_PATTERN, ResourceLocation.fromNamespaceAndPath(modId, path));
 	}
 
 	/**
@@ -71,7 +72,7 @@ public abstract class BaseSherdDatagenSuite<T extends BaseSherdDatagenSuite<T>>
 	 */
 	public ResourceLocation modLoc(String path)
 	{
-		return new ResourceLocation(modId, path);
+		return ResourceLocation.fromNamespaceAndPath(modId, path);
 	}
 
 	/**
@@ -82,9 +83,9 @@ public abstract class BaseSherdDatagenSuite<T extends BaseSherdDatagenSuite<T>>
 	 * @return The datagen suite with the sherd added
 	 */
 
-	public T makeSherdSuite(ResourceKey<Sherd> key, Ingredient ingredient, ResourceKey<String> pattern)
+	public T makeSherdSuite(ResourceKey<Sherd> key, Ingredient ingredient, ResourceKey<DecoratedPotPattern> pattern)
 	{
-		Optional<ResourceKey<String>> patternOptional;
+		Optional<ResourceKey<DecoratedPotPattern>> patternOptional;
 		if (key.location().equals(pattern.location()))
 			patternOptional = Optional.empty();
 		else
@@ -93,19 +94,19 @@ public abstract class BaseSherdDatagenSuite<T extends BaseSherdDatagenSuite<T>>
 		return (T) this;
 	}
 
-	public T makeSherdSuite(ResourceLocation key, Ingredient ingredient, ResourceKey<String> pattern)
+	public T makeSherdSuite(ResourceLocation key, Ingredient ingredient, ResourceKey<DecoratedPotPattern> pattern)
 	{
 		return makeSherdSuite(SherdsApiRegistries.sherdKey(key), ingredient, pattern);
 	}
 
-	public T makeSherdSuite(String key, Ingredient ingredient, ResourceKey<String> pattern)
+	public T makeSherdSuite(String key, Ingredient ingredient, ResourceKey<DecoratedPotPattern> pattern)
 	{
 		return makeSherdSuite(sherdKey(key), ingredient, pattern);
 	}
 
 	public T makeSherdSuite(ResourceKey<Sherd> key, Ingredient ingredient, ResourceLocation pattern)
 	{
-		return makeSherdSuite(key, ingredient, ResourceKey.create(Registries.DECORATED_POT_PATTERNS, pattern));
+		return makeSherdSuite(key, ingredient, ResourceKey.create(Registries.DECORATED_POT_PATTERN, pattern));
 	}
 
 	public T makeSherdSuite(ResourceLocation key, Ingredient ingredient, ResourceLocation pattern)
@@ -141,17 +142,17 @@ public abstract class BaseSherdDatagenSuite<T extends BaseSherdDatagenSuite<T>>
 	 * @return The datagen suite with the sherd added
 	 */
 
-	public T makeSherdSuite(ResourceKey<Sherd> key, List<ItemLike> items, ResourceKey<String> pattern)
+	public T makeSherdSuite(ResourceKey<Sherd> key, List<ItemLike> items, ResourceKey<DecoratedPotPattern> pattern)
 	{
 		return makeSherdSuite(key, Ingredient.of(items.toArray(new ItemLike[0])), pattern);
 	}
 
-	public T makeSherdSuite(ResourceLocation key, List<ItemLike> items, ResourceKey<String> pattern)
+	public T makeSherdSuite(ResourceLocation key, List<ItemLike> items, ResourceKey<DecoratedPotPattern> pattern)
 	{
 		return makeSherdSuite(key, Ingredient.of(items.toArray(new ItemLike[0])), pattern);
 	}
 
-	public T makeSherdSuite(String key, List<ItemLike> items, ResourceKey<String> pattern)
+	public T makeSherdSuite(String key, List<ItemLike> items, ResourceKey<DecoratedPotPattern> pattern)
 	{
 		return makeSherdSuite(key, Ingredient.of(items.toArray(new ItemLike[0])), pattern);
 	}
@@ -194,17 +195,17 @@ public abstract class BaseSherdDatagenSuite<T extends BaseSherdDatagenSuite<T>>
 	 * @return The datagen suite with the sherd added
 	 */
 
-	public T makeSherdSuite(ResourceKey<Sherd> key, ItemLike item, ResourceKey<String> pattern)
+	public T makeSherdSuite(ResourceKey<Sherd> key, ItemLike item, ResourceKey<DecoratedPotPattern> pattern)
 	{
 		return makeSherdSuite(key, Ingredient.of(item), pattern);
 	}
 
-	public T makeSherdSuite(ResourceLocation key, ItemLike item, ResourceKey<String> pattern)
+	public T makeSherdSuite(ResourceLocation key, ItemLike item, ResourceKey<DecoratedPotPattern> pattern)
 	{
 		return makeSherdSuite(key, Ingredient.of(item), pattern);
 	}
 
-	public T makeSherdSuite(String key, ItemLike item, ResourceKey<String> pattern)
+	public T makeSherdSuite(String key, ItemLike item, ResourceKey<DecoratedPotPattern> pattern)
 	{
 		return makeSherdSuite(key, Ingredient.of(item), pattern);
 	}
@@ -247,17 +248,17 @@ public abstract class BaseSherdDatagenSuite<T extends BaseSherdDatagenSuite<T>>
 	 * @return The datagen suite with the sherd added
 	 */
 
-	public T makeSherdSuite(ResourceKey<Sherd> key, TagKey<Item> tag, ResourceKey<String> pattern)
+	public T makeSherdSuite(ResourceKey<Sherd> key, TagKey<Item> tag, ResourceKey<DecoratedPotPattern> pattern)
 	{
 		return makeSherdSuite(key, Ingredient.of(tag), pattern);
 	}
 
-	public T makeSherdSuite(ResourceLocation key, TagKey<Item> tag, ResourceKey<String> pattern)
+	public T makeSherdSuite(ResourceLocation key, TagKey<Item> tag, ResourceKey<DecoratedPotPattern> pattern)
 	{
 		return makeSherdSuite(key, Ingredient.of(tag), pattern);
 	}
 
-	public T makeSherdSuite(String key, TagKey<Item> tag, ResourceKey<String> pattern)
+	public T makeSherdSuite(String key, TagKey<Item> tag, ResourceKey<DecoratedPotPattern> pattern)
 	{
 		return makeSherdSuite(key, Ingredient.of(tag), pattern);
 	}

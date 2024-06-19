@@ -2,6 +2,7 @@ package dev.thomasglasser.sherdsapi.example;
 
 import dev.thomasglasser.sherdsapi.SherdsApi;
 import dev.thomasglasser.sherdsapi.api.data.FabricSherdDatagenSuite;
+import dev.thomasglasser.tommylib.api.tags.ConventionalItemTags;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.minecraft.core.RegistrySetBuilder;
@@ -34,7 +35,7 @@ public class ExampleFabricDataGenerator implements DataGeneratorEntrypoint
 
 		suite
 				.makeSherdSuite("api", Items.LIGHT)
-				.makeSherdSuite(suite.modLoc("hello"), ItemTags.MUSIC_DISCS, DecoratedPotPatterns.HEART)
+				.makeSherdSuite(suite.modLoc("hello"), ConventionalItemTags.MUSIC_DISCS, DecoratedPotPatterns.HEART)
 				.makeSherdSuite(SherdsApi.modLoc("replacement"), List.of(Items.SHEAF_POTTERY_SHERD, Items.SHELTER_POTTERY_SHERD), DecoratedPotPatterns.ARCHER)
 				.build(pack);
 	}
