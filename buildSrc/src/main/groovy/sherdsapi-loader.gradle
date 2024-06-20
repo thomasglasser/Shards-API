@@ -15,7 +15,7 @@ configurations {
 }
 
 dependencies {
-    implementation(project(':common')) {
+    compileOnly(project(':common')) {
         capabilities {
             requireCapability "$group:$mod_id"
         }

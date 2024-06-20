@@ -28,7 +28,9 @@ dependencies {
     implementation "io.github.llamalad7:mixinextras-common:${mixinextras_version}"
     implementation group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.2'
 
-    implementation "dev.thomasglasser.tommylib:tommylib-common-${minecraft_version}:${tommylib_version}"
+    implementation("dev.thomasglasser.tommylib:tommylib-common-${minecraft_version}:${tommylib_version}") {
+        transitive = false
+    }
 }
 
 configurations {

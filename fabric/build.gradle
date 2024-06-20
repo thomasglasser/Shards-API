@@ -14,7 +14,9 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
     implementation group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.1'
 
-    include modImplementation("dev.thomasglasser.tommylib:tommylib-fabric-${minecraft_version}:${tommylib_version}")
+    include modImplementation("dev.thomasglasser.tommylib:tommylib-fabric-${minecraft_version}:${tommylib_version}") {
+        transitive = false
+    }
 
     // Runtime
     modLocalRuntime "com.terraformersmc:modmenu:${modmenu_version}"

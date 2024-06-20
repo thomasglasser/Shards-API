@@ -85,14 +85,12 @@ repositories {
         }
         filter { includeGroupAndSubgroups("org.spongepowered") }
     }
-    exclusiveContent {
-        forRepository {
-            maven {
-                name = 'TommyLib'
-                url = 'https://dl.cloudsmith.io/public/thomasglasser/tommylib/maven/'
-            }
+    maven {
+        name = 'TommyLib'
+        url = 'https://dl.cloudsmith.io/public/thomasglasser/tommylib/maven/'
+        content {
+            includeGroupAndSubgroups("dev.thomasglasser.tommylib")
         }
-        filter { includeGroupAndSubgroups("dev.thomasglasser.tommylib") }
     }
     maven {
         name = 'NeoForge'
