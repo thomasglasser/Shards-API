@@ -11,16 +11,6 @@ neoForge {
         minecraftVersion = parchment_minecraft_version
         mappingsVersion = parchment_version
     }
-
-    // Required for common ATs to work. This line can be removed when ModDevGradle updates NFRT
-    neoFormRuntime {
-        version = '0.1.53'
-    }
-
-    def at = 'src/main/resources/META-INF/accesstransformer.cfg'
-    if (file(at).exists()) {
-        accessTransformers = [at]
-    }
 }
 
 dependencies {
