@@ -31,7 +31,7 @@ public class NeoForgeSherdDatagenSuite extends BaseSherdDatagenSuite<NeoForgeShe
 		super(modId);
 		DataGenerator generator = event.getGenerator();
 		PackOutput packOutput = event.getGenerator().getPackOutput();
-		RegistrySetBuilder builder = (new RegistrySetBuilder()).add(SherdsApiRegistries.SHERD, (pContext) -> this.sherds.forEach((pair) -> pContext.register(pair.getFirst(), pair.getSecond())));
+		RegistrySetBuilder builder = new RegistrySetBuilder().add(SherdsApiRegistries.SHERD, (context) -> this.sherds.forEach((pair) -> context.register(pair.getFirst(), pair.getSecond())));
 
 		DatapackBuiltinEntriesProvider datapackBuiltinEntriesProvider = new DatapackBuiltinEntriesProvider(packOutput, event.getLookupProvider(), builder, Set.of(modId))
 		{
@@ -51,10 +51,10 @@ public class NeoForgeSherdDatagenSuite extends BaseSherdDatagenSuite<NeoForgeShe
 			@Override
 			protected CompletableFuture<HolderLookup.Provider> createContentsProvider()
 			{
-				return registries.thenApply((p_274768_) -> {
+				return registries.thenApply((provider) -> {
 					this.builders.clear();
-					this.addTags(p_274768_);
-					return p_274768_;
+					this.addTags(provider);
+					return provider;
 				});
 			}
 
@@ -65,7 +65,7 @@ public class NeoForgeSherdDatagenSuite extends BaseSherdDatagenSuite<NeoForgeShe
 			}
 
 			@Override
-			protected void addTags(HolderLookup.Provider pProvider)
+			protected void addTags(HolderLookup.Provider provider)
 			{
 				IntrinsicTagAppender<Item> tag = tag(ItemTags.DECORATED_POT_SHERDS);
 				sherds.forEach(pair -> Arrays.stream(pair.getSecond().ingredient().getValues()).forEach(value ->

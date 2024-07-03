@@ -9,14 +9,14 @@ public class SherdsApiRegistries
 {
 	public static final ResourceKey<Registry<Sherd>> SHERD = createRegistryKey("sherd");
 
-	public static ResourceKey<Sherd> sherdKey(ResourceLocation rl)
+	public static ResourceKey<Sherd> sherdKey(ResourceLocation loc)
 	{
-		return ResourceKey.create(SherdsApiRegistries.SHERD, rl);
+		return ResourceKey.create(SherdsApiRegistries.SHERD, loc);
 	}
 
-	private static <T> ResourceKey<Registry<T>> createRegistryKey(String pName)
+	private static <T> ResourceKey<Registry<T>> createRegistryKey(String name)
 	{
-		return ResourceKey.createRegistryKey(SherdsApi.modLoc(pName));
+		return ResourceKey.createRegistryKey(SherdsApi.modLoc(name));
 	}
 
 	public static void init() {}
