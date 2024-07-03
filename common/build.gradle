@@ -1,42 +1,42 @@
 plugins {
-    id 'sherdsapi-common'
-    id 'net.neoforged.moddev' version "${mdg_version}"
+	id 'sherdsapi-common'
+	id 'net.neoforged.moddev' version "${mdg_version}"
 }
 
 
 neoForge {
-    neoFormVersion = "${minecraft_version}-20240613.152323"
+	neoFormVersion = "${minecraft_version}-20240613.152323"
 
-    parchment {
-        minecraftVersion = parchment_minecraft_version
-        mappingsVersion = parchment_version
-    }
+	parchment {
+		minecraftVersion = parchment_minecraft_version
+		mappingsVersion = parchment_version
+	}
 }
 
 dependencies {
-    compileOnly group:'net.fabricmc', name:'sponge-mixin', version:mixin_version
-    implementation "io.github.llamalad7:mixinextras-common:${mixinextras_version}"
-    implementation group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.2'
+	compileOnly group:'net.fabricmc', name:'sponge-mixin', version:mixin_version
+	implementation "io.github.llamalad7:mixinextras-common:${mixinextras_version}"
+	implementation group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.2'
 
-    implementation("dev.thomasglasser.tommylib:tommylib-common-${minecraft_version}:${tommylib_version}") {
-        transitive = false
-    }
+	implementation("dev.thomasglasser.tommylib:tommylib-common-${minecraft_version}:${tommylib_version}") {
+		transitive = false
+	}
 }
 
 configurations {
-    commonJava {
-        canBeResolved = false
-        canBeConsumed = true
-    }
-    commonResources {
-        canBeResolved = false
-        canBeConsumed = true
-    }
+	commonJava {
+		canBeResolved = false
+		canBeConsumed = true
+	}
+	commonResources {
+		canBeResolved = false
+		canBeConsumed = true
+	}
 }
 
 artifacts {
-    commonJava sourceSets.main.java.sourceDirectories.singleFile
-    sourceSets.main.resources.sourceDirectories.files.each {
-        commonResources it
-    }
+	commonJava sourceSets.main.java.sourceDirectories.singleFile
+	sourceSets.main.resources.sourceDirectories.files.each {
+		commonResources it
+	}
 }

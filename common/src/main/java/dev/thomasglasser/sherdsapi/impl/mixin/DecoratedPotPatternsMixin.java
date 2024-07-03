@@ -15,31 +15,23 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(DecoratedPotPatterns.class)
-public class DecoratedPotPatternsMixin
-{
-	@ModifyReturnValue(method = "getPatternFromItem", at = @At("RETURN"))
-	private static ResourceKey<DecoratedPotPattern> getResourceKey(ResourceKey<DecoratedPotPattern> original, Item item)
-	{
-		Level level = ClientUtils.getLevel();
+public class DecoratedPotPatternsMixin {
+    @ModifyReturnValue(method = "getPatternFromItem", at = @At("RETURN"))
+    private static ResourceKey<DecoratedPotPattern> getResourceKey(ResourceKey<DecoratedPotPattern> original, Item item) {
+        Level level = ClientUtils.getLevel();
 
-		if (level != null)
-		{
-			Registry<Sherd> registry = level.registryAccess().registry(SherdsApiRegistries.SHERD).orElseThrow();
-			for (Sherd sherd : registry.stream().toList())
-			{
-				if (sherd.ingredient().test(item.getDefaultInstance()))
-				{
-					if (sherd.pattern().isPresent())
-					{
-						return sherd.pattern().get();
-					}
-					else
-					{
-						return ResourceKey.create(Registries.DECORATED_POT_PATTERN, registry.getResourceKey(sherd).orElseThrow().location());
-					}
-				}
-			}
-		}
-		return original;
-	}
+        if (level != null) {
+            Registry<Sherd> registry = level.registryAccess().registry(SherdsApiRegistries.SHERD).orElseThrow();
+            for (Sherd sherd : registry.stream().toList()) {
+                if (sherd.ingredient().test(item.getDefaultInstance())) {
+                    if (sherd.pattern().isPresent()) {
+                        return sherd.pattern().get();
+                    } else {
+                        return ResourceKey.create(Registries.DECORATED_POT_PATTERN, registry.getResourceKey(sherd).orElseThrow().location());
+                    }
+                }
+            }
+        }
+        return original;
+    }
 }

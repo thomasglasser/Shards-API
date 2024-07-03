@@ -2,6 +2,7 @@ plugins {
     id 'java-library'
     id 'maven-publish'
     id 'signing'
+    id 'com.diffplug.spotless'
 }
 
 base {
@@ -157,6 +158,47 @@ processResources {
         expand expandProps
     }
     inputs.properties(expandProps)
+}
+
+spotless {
+    format 'misc', {
+        target '*.gradle', '.gitattributes', '.gitignore'
+
+        trimTrailingWhitespace()
+        indentWithTabs()
+    }
+    java {
+        endWithNewline()
+        indentWithSpaces()
+        removeUnusedImports()
+        toggleOffOn()
+        eclipse().configFile rootProject.file('codeformat/formatter-config.xml')
+        importOrder()
+
+        custom 'noWildcardImports', { String fileContents ->
+            if (fileContents.contains('*;\n')) {
+                throw new GradleException('No wildcard imports are allowed!')
+            }
+        }
+
+        custom 'noNotNull', { String fileContents ->
+            if (fileContents.contains('@NotNull') || fileContents.contains('@Nonnull')) {
+                throw new GradleException('@NotNull and @Nonnull are disallowed.')
+            }
+        }
+
+        custom 'jetbrainsNullable', { String fileContents ->
+            fileContents.replace('javax.annotation.Nullable', 'org.jetbrains.annotations.Nullable')
+        }
+    }
+}
+
+tasks.named('compileJava') {
+    dependsOn 'spotlessApply'
+}
+
+javadoc {
+    failOnError = false
 }
 
 publishing {

@@ -6,8 +6,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 
 @Mod(SherdsApi.MOD_ID)
-public class SherdsApiNeoForge
-{
+public class SherdsApiNeoForge {
     public SherdsApiNeoForge(IEventBus bus) {
         SherdsApi.init();
 
