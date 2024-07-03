@@ -193,7 +193,7 @@ spotless {
     }
 }
 
-tasks.named('compileJava') {
+tasks.named('spotlessMiscCheck') {
     dependsOn 'spotlessApply'
 }
 

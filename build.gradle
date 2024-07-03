@@ -10,3 +10,7 @@ spotless {
 		indentWithTabs()
 	}
 }
+
+tasks.named('spotlessMiscCheck') {
+	dependsOn 'spotlessApply'
+}
