@@ -5,7 +5,7 @@ plugins {
 
 
 neoForge {
-	neoFormVersion = "${minecraft_version}-20240613.152323"
+	neoFormVersion = "${minecraft_version}-${neoform_version}"
 
 	parchment {
 		minecraftVersion = parchment_minecraft_version
