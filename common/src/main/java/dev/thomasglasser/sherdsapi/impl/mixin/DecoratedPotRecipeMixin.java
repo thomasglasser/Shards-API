@@ -23,7 +23,7 @@ public class DecoratedPotRecipeMixin {
     @Inject(method = "assemble(Lnet/minecraft/world/item/crafting/CraftingInput;Lnet/minecraft/core/HolderLookup$Provider;)Lnet/minecraft/world/item/ItemStack;", at = @At("HEAD"), cancellable = true)
     private void assemble(CraftingInput input, HolderLookup.Provider provider, CallbackInfoReturnable<ItemStack> cir) {
         if (input.items().stream().anyMatch(stack -> stack.has(SherdsApiDataComponents.SHERD_PATTERN.get()))) {
-            StackPotDecorations decorations = new StackPotDecorations(input.getItem(1), input.getItem(3), input.getItem(5), input.getItem(7));
+            StackPotDecorations decorations = new StackPotDecorations(input.getItem(1).copyWithCount(1), input.getItem(3).copyWithCount(1), input.getItem(5).copyWithCount(1), input.getItem(7).copyWithCount(1));
             cir.setReturnValue(StackPotDecorations.createDecoratedPotItem(decorations));
         }
     }
