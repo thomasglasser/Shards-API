@@ -1,6 +1,6 @@
 package dev.thomasglasser.sherdsapi;
 
-import dev.thomasglasser.sherdsapi.impl.SherdsApiSherds;
+import dev.thomasglasser.sherdsapi.api.SherdsApiDataComponents;
 import dev.thomasglasser.tommylib.api.platform.TommyLibServices;
 import net.minecraft.resources.ResourceLocation;
 import org.slf4j.Logger;
@@ -14,7 +14,7 @@ public class SherdsApi {
     public static void init() {
         LOGGER.info("Initializing {} for {} in a {} environment...", MOD_NAME, TommyLibServices.PLATFORM.getPlatformName(), TommyLibServices.PLATFORM.getEnvironmentName());
 
-        SherdsApiSherds.init();
+        SherdsApiDataComponents.init();
     }
 
     public static ResourceLocation modLoc(String s) {

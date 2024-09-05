@@ -27,3 +27,4 @@ accessible class net/minecraft/data/tags/IntrinsicHolderTagsProvider$IntrinsicTa
 accessible field net/minecraft/world/item/crafting/Ingredient values [Lnet/minecraft/world/item/crafting/Ingredient$Value;
 accessible class net/minecraft/world/item/crafting/Ingredient$TagValue
 accessible method net/minecraft/world/item/crafting/Ingredient$Value getItems ()Ljava/util/Collection;
+accessible method net/minecraft/client/renderer/Sheets createDecoratedPotMaterial (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/client/resources/model/Material;

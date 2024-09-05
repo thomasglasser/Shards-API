@@ -25,7 +25,6 @@
     "client": [
     ],
     "fabric-datagen": [
-      "dev.thomasglasser.sherdsapi.example.ExampleFabricDataGenerator"
     ]
   },
   "mixins": [
