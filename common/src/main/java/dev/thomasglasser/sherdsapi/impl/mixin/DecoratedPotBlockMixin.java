@@ -24,17 +24,17 @@ import java.util.stream.Stream;
 
 @Mixin(DecoratedPotBlock.class)
 public class DecoratedPotBlockMixin {
-    @Inject(method = "appendHoverText", at = @At("TAIL"))
+    @Inject(method = "appendHoverText", at = @At("RETURN"))
     private void appendHoverText(ItemStack p_285238_, Item.TooltipContext p_339662_, List<Component> p_285448_, TooltipFlag p_284997_, CallbackInfo ci) {
-        StackPotDecorations potdecorations = p_285238_.get(SherdsApiDataComponents.STACK_POT_DECORATIONS.get());
-        if (potdecorations != null) {
+        StackPotDecorations decorations = p_285238_.get(SherdsApiDataComponents.STACK_POT_DECORATIONS.get());
+        if (decorations != null) {
             p_285448_.add(CommonComponents.EMPTY);
-            Stream.of(potdecorations.front(), potdecorations.left(), potdecorations.right(), potdecorations.back())
+            Stream.of(decorations.front(), decorations.left(), decorations.right(), decorations.back())
                     .forEach(p_330130_ -> p_285448_.add(p_330130_.orElse(Items.BRICK.getDefaultInstance()).getHoverName().plainCopy().withStyle(ChatFormatting.GRAY)));
         }
     }
 
-    @Inject(method = "lambda$getDrops$0", at = @At("HEAD"), cancellable = true)
+    @Inject(method = {"lambda$getDrops$0", "method_49815"}, at = @At("HEAD"), cancellable = true)
     private static void getDrops(DecoratedPotBlockEntity decoratedpotblockentity, Consumer<ItemStack> p_330132_, CallbackInfo ci) {
         if (decoratedpotblockentity.getDecorations() == PotDecorations.EMPTY) {
             StackPotDecorations decorations = ((StackPotDecorationsHolder) decoratedpotblockentity).sherdsapi$getDecorations();
