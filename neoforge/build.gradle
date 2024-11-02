@@ -59,5 +59,5 @@ dependencies {
 
 	// Runtime
 	localRuntime "maven.modrinth:jade:${jade_version}+neoforge"
-	localRuntime "mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}"
+//	localRuntime "mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}"
 }

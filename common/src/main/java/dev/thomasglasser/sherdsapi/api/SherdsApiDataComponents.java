@@ -11,7 +11,13 @@ import net.minecraft.resources.ResourceLocation;
 public class SherdsApiDataComponents {
     public static final DeferredRegister<DataComponentType<?>> DATA_COMPONENTS = DeferredRegister.create(Registries.DATA_COMPONENT_TYPE, SherdsApi.MOD_ID);
 
+    /**
+     * Data component type for sherd pattern. Points to a texture.
+     */
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<ResourceLocation>> SHERD_PATTERN = DATA_COMPONENTS.register("sherd_pattern", () -> DataComponentType.<ResourceLocation>builder().persistent(ResourceLocation.CODEC).networkSynchronized(ResourceLocation.STREAM_CODEC).cacheEncoding().build());
+    /**
+     * Data component type for stack pot decorations. Points to a list of stack pot decorations.
+     */
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<StackPotDecorations>> STACK_POT_DECORATIONS = DATA_COMPONENTS.register("stack_pot_decorations", () -> DataComponentType.<StackPotDecorations>builder().persistent(StackPotDecorations.CODEC).networkSynchronized(StackPotDecorations.STREAM_CODEC).cacheEncoding().build());
 
     public static void init() {}

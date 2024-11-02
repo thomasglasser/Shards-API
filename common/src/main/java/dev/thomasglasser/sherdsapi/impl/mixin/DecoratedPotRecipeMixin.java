@@ -1,10 +1,12 @@
 package dev.thomasglasser.sherdsapi.impl.mixin;
 
-import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
-import com.llamalad7.mixinextras.sugar.Local;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import dev.thomasglasser.sherdsapi.api.SherdsApiDataComponents;
 import dev.thomasglasser.sherdsapi.impl.StackPotDecorations;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CraftingInput;
 import net.minecraft.world.item.crafting.DecoratedPotRecipe;
@@ -15,9 +17,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(DecoratedPotRecipe.class)
 public class DecoratedPotRecipeMixin {
-    @ModifyExpressionValue(method = "matches(Lnet/minecraft/world/item/crafting/CraftingInput;Lnet/minecraft/world/level/Level;)Z", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;is(Lnet/minecraft/tags/TagKey;)Z"))
-    private boolean matches(boolean original, @Local ItemStack itemstack) {
-        return original || itemstack.has(SherdsApiDataComponents.SHERD_PATTERN.get());
+    @WrapOperation(method = "matches(Lnet/minecraft/world/item/crafting/CraftingInput;Lnet/minecraft/world/level/Level;)Z", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;is(Lnet/minecraft/tags/TagKey;)Z"))
+    private boolean matches(ItemStack instance, TagKey<Item> tag, Operation<Boolean> original) {
+        return original.call(instance, tag) || instance.has(SherdsApiDataComponents.SHERD_PATTERN.get());
     }
 
     @Inject(method = "assemble(Lnet/minecraft/world/item/crafting/CraftingInput;Lnet/minecraft/core/HolderLookup$Provider;)Lnet/minecraft/world/item/ItemStack;", at = @At("HEAD"), cancellable = true)
