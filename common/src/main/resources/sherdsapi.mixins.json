@@ -5,11 +5,12 @@
   "refmap": "${mod_id}.refmap.json",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "accessor.ItemsToPotsAccessor"
+    "DecoratedPotBlockEntityMixin",
+    "DecoratedPotBlockMixin",
+    "DecoratedPotRecipeMixin"
   ],
   "client": [
-    "SheetsMixin",
-    "DecoratedPotPatternsMixin"
+    "DecoratedPotRendererMixin"
   ],
   "server": [
   ],

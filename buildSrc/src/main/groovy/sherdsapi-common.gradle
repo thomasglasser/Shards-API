@@ -1,8 +1,11 @@
+import java.util.regex.Matcher
+import java.util.regex.Pattern
+
 plugins {
     id 'java-library'
     id 'maven-publish'
     id 'signing'
-    id 'com.diffplug.spotless'
+    id 'dev.lukebemish.immaculate'
 }
 
 base {
@@ -160,21 +163,24 @@ processResources {
     inputs.properties(expandProps)
 }
 
-spotless {
-    format 'misc', {
-        target '*.gradle', '.gitattributes', '.gitignore'
+immaculate {
+    workflows.register('java') {
+        java()
+        files.from rootProject.fileTree("src", {
+            include "**/*.java"
+        })
+        noTabs()
+        googleFixImports()
+        toggleOff = 'spotless:off'
+        toggleOn = 'spotless:on'
+        eclipse {
+            version '3.37.0'
+            config = rootProject.file('codeformat/formatter-config.xml')
+        }
 
-        trimTrailingWhitespace()
-        indentWithTabs()
-    }
-    java {
-        endWithNewline()
-        indentWithSpaces()
-        removeUnusedImports()
-        toggleOffOn()
-        eclipse().configFile rootProject.file('codeformat/formatter-config.xml')
-        importOrder()
 
+        // courtesy of diffplug/spotless#240
+        // https://github.com/diffplug/spotless/issues/240#issuecomment-385206606
         custom 'noWildcardImports', { String fileContents ->
             if (fileContents.contains('*;\n')) {
                 throw new GradleException('No wildcard imports are allowed!')
@@ -187,18 +193,31 @@ spotless {
             }
         }
 
+        //Trim any trailing whitespace from patch additions
+        def trailingWhitespace = Pattern.compile('^\\+.*[ \t]+\$', Pattern.UNIX_LINES | Pattern.MULTILINE)
+        custom 'trimTrailingWhitespace', { String fileContents ->
+            Matcher matcher = trailingWhitespace.matcher(fileContents)
+            StringBuilder sb = new StringBuilder()
+            while (matcher.find()) {
+                matcher.appendReplacement(sb, matcher.group().trim())
+            }
+            matcher.appendTail(sb)
+            return sb.toString()
+        }
+
         custom 'jetbrainsNullable', { String fileContents ->
             fileContents.replace('javax.annotation.Nullable', 'org.jetbrains.annotations.Nullable')
         }
     }
 }
 
-tasks.named('spotlessMiscCheck') {
-    dependsOn 'spotlessApply'
+tasks.named('compileJava') {
+    dependsOn 'immaculateApply'
 }
 
 javadoc {
     failOnError = false
+    options.tags = [ "apiNote", "reason" ]
 }
 
 publishing {
